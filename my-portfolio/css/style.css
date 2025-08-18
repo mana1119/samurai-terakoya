@@ -1,17 +1,27 @@
+
+/* 共通コンテナ */
+.content-container {
+  width: 70%;       /* 画面幅の60%に抑えて左右に十分な余白 */
+  max-width: 1000px;
+  margin: 0 auto;   /* 中央揃え */
+  box-sizing: border-box;
+}
+
+/* ヘッダー */
 header {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  padding: 100px 400px 10px  400px;
   background-color: #fff;
+  padding: 70px 0 10px 0; /* 横幅はcontent-containerで揃える */
 }
 
 .section-title {
   font-family: 'Playfair Display', serif;
   font-size: 32px;
   text-align: center;
-  margin: 40px 0; /* 上下余白の例 */
+  margin: 40px 0;
 }
 
 .logo {
@@ -29,10 +39,6 @@ header {
 .sns-icons a img {
   width: 24px;
   height: 24px;
-  
-}
-
-.sns-icons a img {
   transition: opacity 0.3s ease;
 }
 
@@ -49,7 +55,7 @@ header {
   padding: 0;
 }
 
-li {
+.nav-menu li {
   font-family: 'Playfair Display', serif;
   font-size: 24px;
 }
@@ -58,14 +64,9 @@ li {
   text-decoration: none;
   color: #333;
   font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-.nav-menu li a {
   position: relative;
   display: inline-block;
-  text-decoration: none;
-  color: #333;
+  transition: color 0.3s ease;
 }
 
 .nav-menu li a::after {
@@ -85,135 +86,158 @@ li {
   transform: scaleX(1);
 }
 
+/* 擬似要素１：滲むグラデーション */
+.mainvisual::before {
+  content:"";
+  position:absolute;
+  inset:-30%; /* 広めにとることで滲みやすく */
+  background:
+    radial-gradient(circle at 20% 30%, rgba(247,37,133,0.4) 0%, transparent 70%),
+    radial-gradient(circle at 80% 70%, rgba(128,128,128,0.35) 0%, transparent 75%),
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,0.45) 0%, transparent 60%); /* 白強め */
+  background-repeat: no-repeat;
+  background-size: 200% 200%; /* 広げると滲みが自然になる */
+  filter: blur(160px); /* かなり強めのぼかし */
+  z-index: 0;
+  animation: floatGradient 25s ease-in-out infinite alternate;
+}
+
+/* 光のにじみが漂うように動く */
+@keyframes floatGradient {
+  0% {
+    background-position: 20% 30%, 80% 70%, 50% 50%;
+  }
+  100% {
+    background-position: 30% 40%, 70% 60%, 60% 40%;
+  }
+}
+
+
+/* 擬似要素２：ガラス板 */
+.mainvisual::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(255,255,255,0.08);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border:1px solid rgba(255,255,255,0.25);
+  z-index: 1;
+  pointer-events:none;
+}
+
+
+/* ④ タイトルなど中身を最前面に */
+.site-titles{
+  position:relative;
+  z-index:2;
+  text-align:center;
+  color:#fff;                 /* お好みで */
+}
+
+
 .site-titles {
-  position: relative; 
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  padding: 1rem;
-  height: 50vh;
-  justify-content: center;
-}
-
-.site-titles {
-  position: relative; /* 絶対配置の基準に */
-  height: 300px; /* 必要に応じて調整 */
-  width: 100%; /* 横幅調整 */
-  z-index: 1;
-}
-
-/* タイトルの親要素を絶対配置で右端に固定 */
-.title {
-  position: absolute;
-  padding: 0 400px;
-  margin: 0; /* marginは不要 */
-}
-
-/* 各タイトルの縦位置 */
-.title:nth-child(1) {
-  top: 40px;
-}
-.title:nth-child(2) {
-  top: 140px;
-}
-.title:nth-child(3) {
-  top: 260px;
+  align-items: flex-end;   /* 横方向の右端に寄せる */
+  justify-content: center; /* 縦方向の中央揃え */
+  width: 100%;
 }
 
 /* 画像にスライド＆フェードインアニメーション */
 .title img {
-  opacity: 0;
-  animation: slideRight 2s forwards;
+ opacity: 0;
+ animation: slideRight 2s forwards;
 }
+
 
 /* 順番に開始するための遅延 */
 .title:nth-child(1) img {
-  animation-delay: 0s;
+ animation-delay: 0s;
 }
 .title:nth-child(2) img {
-  animation-delay: 0.5s;
+ animation-delay: 0.5s;
 }
 .title:nth-child(3) img {
-  animation-delay: 1s;
+ animation-delay: 1s;
 }
+
 
 /* スライドインのキーフレーム */
 @keyframes slideRight {
-  0% {
-    transform: translateX(-100vw);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
+ 0% {
+   transform: translateX(-100vw);
+   opacity: 0;
+ }
+ 100% {
+   transform: translateX(0);
+   opacity: 1;
+ }
 }
+
 
 /* 左端から右端までスライド（+フェードイン） */
 @keyframes slideRight {
-  0% {
-    transform: translateX(-100vw);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
+ 0% {
+   transform: translateX(-100vw);
+   opacity: 0;
+ }
+ 100% {
+   transform: translateX(0);
+   opacity: 1;
+ }
 }
 
+
 @keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+ 0% {
+   opacity: 0;
+   transform: translateY(20px);
+ }
+ 100% {
+   opacity: 1;
+   transform: translateY(0);
+ }
 }
+
 
 /* メッセージスタイル */
 .final-message {
-  position: absolute;
-  top: 380px; 
+  position: relative;              /* absoluteをやめる */
+  width: 100%;                     /* 親コンテナいっぱいに */
+  max-width: 100%;                 /* 横幅制限 */
+  margin: 20px 0 0 0;              /* 上に余白、左右はコンテナで制御 */
   opacity: 0;
   animation: fadeInUp 1.5s ease-out forwards;
-  animation-delay: 2.5s; /* ここを調整：3タイトルが出終わるタイミングに合わせて */
-  text-align: right; /* 右寄せにしたい場合 */
-  margin-top: 40px; /* 必要に応じて余白 */
-  font-size: 1.2rem; /* 任意のサイズ調整 */
-  color: #333;
+  animation-delay: 2.5s;           /* タイミングはそのまま */
+  text-align: right;               /* 右寄せ */
+  font-size: 1.2rem;
+  color: #A64E4D;
 }
+
 
 .mainvisual {
-  position: relative;
-  width: 100%;
-  height: 60vh;
-  min-height: 400px;
-  overflow: hidden;
+ position: relative;
+ width: 100%;
+ height: 70vh;
+ min-height: 500px;
+ overflow: hidden;
 }
 
-#Skills {
-  padding: 40px 20px;
-}
 
-/* 全体を2列のグリッドにする */
+/* Skillsセクション */
 #Skills .content-wrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* 2列 */
-  gap: 40px 180px; /* 行間, 列間 */
-  padding: 50px 300px 50px  300px;
-  margin: 0 auto;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px 180px;
+  padding: 50px 0;
 }
 
-/* 各 content の配置 */
 #Skills .content {
   display: flex;
   align-items: flex-start;
-  
 }
 
-/* 画像サイズと余白 */
 #Skills img {
   width: 100px;
   height: 100px;
@@ -221,104 +245,41 @@ li {
   object-fit: contain;
 }
 
-
-
-/* テキスト部分 */
 #Skills .text {
   flex: 1;
   text-align: left;
   max-width: 100%;
-  margin: 0;         /* 余計な余白を除去 */
-  padding: 0;
 }
 
 #Skills .content-title {
   font-family: 'Noto Sans', sans-serif;
   font-size: 22px;
-  margin: 0;               /* 見出しの上の余白をなくす */
-  line-height: 1.2;        /* 行間を詰めてバランス調整 */
-  padding-top: 2px;        /* 必要があれば微調整（例: 2px〜5px） */
-}
-#Skills .text p {
-  margin-top: 8px;
-  width: 100%;
+  margin: 0;
+  line-height: 1.2;
+  padding-top: 2px;
 }
 
-/* モバイル対応：1列表示に変更 */
+#Skills .text p { margin-top: 8px; width: 100%; }
+
 @media (max-width: 768px) {
-  #Skills .content-wrapper {
-    grid-template-columns: 1fr; /* 1列に */
-  }
+  #Skills .content-wrapper { grid-template-columns: 1fr; }
 }
 
+/* Profileセクション */
 #Profile .content {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-#Profile img {
-  width: 200px;
-  height: 200px;
-  border-radius: 5%;
-  margin-right: 60px;
-}
-#Plofile .p {
-  text-align: left;
-}
+#Profile img { width: 200px; height: 200px; border-radius: 5%; margin-right: 60px; }
 
-.button006 a {
-    background: #eee;
-    position: relative;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 0 400px 0 auto;
-    max-width: 120px;
-    padding: 10px 25px;
-    color: #313131;
-    transition: 0.3s ease-in-out;
-    font-weight: 500;
-    text-decoration: none;
-    border-radius: 6px;
-}
-.button006 a:before {
-    content: '';
-    position: absolute;
-    top: calc(50% - 2px);
-    right: -2em;
-    transform: translateY(calc(-50% - 2px)) rotate(30deg);
-    width: 12px;
-    height: 2px;
-    background-color: #A64E4D;
-    transition: 0.3s;
-}
-.button006 a:after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: -2em;
-    transform: translateY(-50%);
-    width: 60px;
-    height: 2px;
-    background-color: #A64E4D;
-    transition: 0.3s;
-}
-.button006 a:hover:before, .button006 a:hover:after {
-    right: -2.5em;
-}
-.button006 a:hover {
-    background: #A64E4D;
-    color: #edf6ff;
-}
-
+/* Serviceセクション */
 #Service .content-wrapper {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 40px;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px;
+  padding: 40px 0;
 }
 
 #Service .content {
@@ -330,53 +291,91 @@ li {
   min-width: 280px;
 }
 
-#Service .text {
-  margin-top: 20px;
-}
+#Service .text { margin-top: 20px; }
+#Service .content img { width: 150px; height: 150px; object-fit: contain; }
+#Service .content-title { text-align: center; font-size: 22px; font-family: 'Noto Sans', sans-serif; margin: 10px 0 4px 0; }
+#Service .content-english-title { text-align: center; color: #A64E4D; font-size: 16px; font-weight: 300; margin: 0 0 12px 0; }
 
-#Service .content img {
-  width: 150px;
-  height: 150px;
-  object-fit: contain;
-}
-#Service .content-title {
-  text-align: center;
-  font-size: 22px;
-  font-family: 'Noto Sans', sans-serif;
-  margin: 10px 0 4px 0;
-}
+/* Contactセクション */
+.contact-text { text-align: center; font-size: 18px; font-weight: 400; }
 
-#Service .content-english-title {
-  text-align: center;
-  color: #A64E4D;
+
+
+
+.contact-form .form-group { margin-bottom: 15px; }
+.contact-form label { display: block; margin-bottom: 5px; font-weight: bold; color: #333; }
+.contact-form input, .contact-form textarea {
+  width: 50%;
+  padding: 10px;
+  border: 2px solid #A64E4D;
+  border-radius: 5px;
+  box-sizing: border-box;
   font-size: 16px;
-  font-weight: 300;
-  margin: 0 0 12px 0;
+}
+.contact-form input:focus, .contact-form textarea:focus {
+  outline: none;
+  border-color: #A64E4D;
 }
 
-.contact-text {
+/* Profileセクション */
+section.profile {
+  padding: 40px 0;
+}
+
+.profile h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
   text-align: center;
-  font-size: 18px;
-  font-weight: 400; /* お好みの重さに調整してください（例: 400, 600など） */
+  margin: 40px 0;
 }
 
-.button007 a {
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.profile-image img {
+  max-width: 200px;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+.profile-side-text {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 0 0 1em 0;
+  padding: 0;
+}
+
+.profile-side-text p { margin: 0 0 1em 0; padding: 0; }
+
+
+
+/* 006 */
+.button006 a,
+.button007 a, 
+.button008 a  {
     background: #eee;
     position: relative;
     display: flex;
     justify-content: space-around;
     align-items: center;
     margin: 80px auto;
-    max-width: 120px;
+    max-width: 180px;
     padding: 10px 25px;
     color: #313131;
-    
     transition: 0.3s ease-in-out;
     font-weight: 500;
     text-decoration: none;
-    border-radius: 6px;
 }
-.button007 a:before {
+
+.button006 a:before ,
+.button007 a:before ,
+.button008 a:before  {
     content: '';
     position: absolute;
     top: calc(50% - 2px);
@@ -387,7 +386,9 @@ li {
     background-color: #A64E4D;
     transition: 0.3s;
 }
-.button007 a:after {
+.button006 a:after ,
+.button007 a:after ,
+.button008 a:after  {
     content: '';
     position: absolute;
     top: 50%;
@@ -398,47 +399,45 @@ li {
     background-color: #A64E4D;
     transition: 0.3s;
 }
-.button007 a:hover:before, .button007 a:hover:after {
+
+.button006 a:hover:before, 
+.button007 a:hover:before,
+.button008 a:hover:before,
+.button006 a:hover:after, 
+.button007 a:hover:after,
+.button008 a:hover:after {
     right: -2.5em;
 }
-.button007 a:hover {
+
+.button006 a:hover, 
+.button007 a:hover,
+.button008 a:hover {
     background: #A64E4D;
     color: #edf6ff;
 }
 
-section.profile {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 40px 20px;
-}
-
-.profile h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 32px;
-  text-align: center;
-  margin: 40px 0; /* 上下余白の例 */
-}
-
-.profile-content {
+.footer-bottom {
   display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
+  justify-content: space-between; /* 左端と右端に配置 */
+  align-items: center;
+  max-width: 1100px;
+  margin: 20px auto 0;
+  padding: 30px 20px;
+  width: 100%;
 }
 
-.profile-image img {
-  max-width: 300px;
-  border-radius: 8px;
+/* ナビは左寄せ */
+.footer-nav .nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
 }
 
-.profile-text {
-  flex: 1;
-  min-width: 280px;
-}
-
-.profile-text p {
-  margin-bottom: 20px;
-}
-
-.highlight {
-  padding: 15px;
+/* コピーライトは右寄せ */
+.footer-bottom p {
+  margin: 0;
+  color: #666;
+  font-size: 12px;
 }
