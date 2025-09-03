@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>M's Portfolio</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/destyle.css@1.0.5/destyle.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" href="images/favicon.svg" type="image/png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="hero-wrapper">
+      <div class="content-container">
+        <header>
+          <div class="logo">
+            <a href="index.html"
+              ><img src="images/portfolio-logo.svg" alt="M’s Portfolio"
+            /></a>
+          </div>
+          <div class="right-side">
+            <div class="sns-icons">
+              <a href="https://www.instagram.com/mana48550/" target="_blank">
+                <img src="images/instagram.svg" alt="Instagram" />
+              </a>
+              <a href="https://twitter.com/youraccount" target="_blank">
+                <img src="images/x.svg" alt="X" />
+              </a>
+            </div>
+            <nav>
+              <ul class="nav-menu">
+                <li><a href="#Works">Works</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="#Skills">Skill</a></li>
+                <li><a href="contact.html">Contact</a></li>
+              </ul>
+            </nav>
+          </div>
+          <!-- ハンバーガーメニュー -->
+          <div class="hamburger js-hamburger sp-show">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <!-- ドロワーメニュー -->
+          <div class="drawer js-drawer">
+            <div class="drawer-inner">
+              <div class="drawer__nav">
+                <ul class="drawer__list">
+                  <li class="drawer__item">
+                    <a href="#" class="drawer__link">Works</a>
+                  </li>
+                  <li class="drawer__item">
+                    <a href="#about" class="drawer__link">Profile</a>
+                  </li>
+                  <li class="drawer__item">
+                    <a href="#works" class="drawer__link">Service</a>
+                  </li>
+                  <li class="drawer__item">
+                    <a href="#service" class="drawer__link">Contact</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </header>
+
+      <section class="contact">
+        <main>
+          <h1 class="section-title">CONTACT</h1>
+          <p>
+            制作のご相談やご質問など、下記フォームよりお気軽にお問い合わせください。<br />
+            内容を確認後、折り返しご連絡いたします。
+          </p>
+          <form action="#" method="post" class="contact-form">
+            <!-- お名前 -->
+            <div class="form-group">
+              <label for="name">お名前</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+
+            <!-- メールアドレス -->
+            <div class="form-group">
+              <label for="email">メールアドレス</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+
+            <!-- お問い合わせ内容 -->
+            <div class="form-group">
+              <label for="message">お問い合わせ内容</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                required
+              ></textarea>
+            </div>
+
+            <!-- 送信ボタン -->
+
+            <div class="button008">
+              <a href="#">内容を送信する</a>
+            </div>
+          </form>
+        </main>
+      </section>
+    </div>
+  </body>
+  <footer id="footer">
+    <div class="content-container">
+      <div class="footer-bottom">
+        <nav class="footer-nav">
+          <ul class="nav-menu">
+            <li><a href="#Works">Works</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="#Service">Service</a></li>
+            <li><a href="#Contact">Contact</a></li>
+          </ul>
+        </nav>
+        <p>&copy; 2025 M’s Portforio. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+</html>

@@ -1,0 +1,54 @@
+.hero-wrapper::after {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  background: #fff; /* 最初は白 */
+  z-index: 0;
+}
+
+/* 上段イントロはそのまま幅100% */
+.profile-intro {
+  margin-bottom: 60px;
+  line-height: 1.4;
+}
+
+/* 下段：左右2カラム */
+.profile-bottom {
+  display: grid;
+  grid-template-columns: 1fr 2fr; /* 左1：右2の比率 */
+  align-items: start;
+  column-gap: 0px;
+}
+
+/* 画像 */
+.profile-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+
+/* 右カラム（テキスト縦並び） */
+.profile-side-text {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  line-height: 1.4;
+}
+
+@media screen and (max-width: 768px) {
+  .profile-bottom {
+    grid-template-columns: 1fr; /* 1列にして縦並び */
+    row-gap: 20px; /* 上下の間隔 */
+  }
+
+  .profile-image {
+    width: 100%; /* 画像幅 */
+    margin: 0 auto; /* 中央揃え */
+    display: block; /* 念のためブロック化 */
+  }
+
+  .profile-side-text {
+    width: 80%; /* テキスト幅 */
+    margin: 30px auto 0; /* 上余白 + 横中央揃え */
+  }
+}

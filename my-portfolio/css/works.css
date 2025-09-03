@@ -1,0 +1,18 @@
+.works-img {
+  display: block; /* ブロック要素に変換 */
+  margin: 0 auto; /* 左右マージン自動で中央揃え */
+  width: 640px; /* 好きな幅に設定 */
+  height: auto; /* 縦横比を保持 */
+}
+
+.work-content h2 {
+  font-size: 16px;
+  font-family: "Noto Sans", sans-serif;
+  text-align: left;
+}
+
+.work-content h3 {
+  font-size: 14px;
+  font-family: "Noto Sans", sans-serif;
+  text-align: left;
+}
