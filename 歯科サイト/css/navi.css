@@ -1,0 +1,79 @@
+.side-nav {
+  width: 280px; /* サイド固定幅 */
+  flex-shrink: 0; /* 小さくならないように固定 */
+  order: 2;
+  text-align: center;
+  padding: 60px 20px;
+  border-left: 1px solid #eee;
+}
+
+.side-nav .nav-wrapper {
+  position: sticky;
+  top: 40px; /* ← 追従時の余白（ヘッダー高さに合わせると自然） */
+}
+
+.side-nav .logo {
+  margin: 20px auto 20px;
+  display: block;
+}
+
+.side-nav nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 40px 0;
+}
+
+.side-nav nav ul li {
+  margin-bottom: 30px;
+}
+
+.side-nav nav ul li a {
+  font-size: 18px;
+  color: #5c4033; /* ブラウン系カラー */
+  text-decoration: none;
+  display: block;
+  font-weight: bold;
+}
+
+.side-nav nav ul li a::after {
+  content: attr(data-en); /* 英語テキストを後ろに表示できる */
+  display: block;
+  font-size: 12px;
+  color: #c2a68d; /* 薄いブラウン */
+  margin-top: 6px;
+  font-weight: normal;
+}
+
+/* 住所・連絡先 */
+.side-nav .clinic-info {
+  margin-top: 60px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #5c4033;
+}
+
+.side-nav .clinic-info a {
+  color: #5c4033;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+nav ul li a {
+  display: block;
+  text-align: center;
+  margin: 20px 0;
+  color: #5c4033; /* 日本語メインの色 */
+  font-size: 18px;
+  font-weight: 500;
+  position: relative; /* 疑似要素の基準にする */
+}
+
+nav ul li a::after {
+  content: attr(data-en); /* data-en の内容を出力 */
+  display: block;
+  font-size: 12px;
+  color: #c2a68d; /* 英語は薄い色 */
+  letter-spacing: 2px; /* 文字間を広げる */
+  margin-top: 4px; /* 日本語との間隔 */
+}

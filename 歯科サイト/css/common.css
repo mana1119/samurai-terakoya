@@ -1,0 +1,39 @@
+.layout {
+  display: flex;
+  width: 100%;
+  /* 中央に収める上限幅 */
+  margin: 0 auto; /* 中央寄せ */
+
+  box-sizing: border-box;
+}
+
+.wrapper {
+  padding: 80px 0; /* 各セクションの上下余白を統一 */
+}
+
+.main-content {
+  background-color: #f5fbfd;
+  flex: 1; /* 残り幅いっぱい */
+  min-width: 0; /* flex収縮時にテキスト崩れ防止 */
+  padding: 60px 160px;
+  order: 1;
+}
+
+.section-title {
+  text-align: left; /* 中央揃え */
+  margin-bottom: 30px; /* 下に余白 */
+}
+
+.section-title .en {
+  display: block;
+  font-size: 24px;
+  font-weight: bold;
+  color: #004477;
+  margin-bottom: 4px; /* 日本語との間に余白 */
+}
+
+.section-title .ja {
+  display: block;
+  font-size: 16px;
+  color: #004477;
+}
